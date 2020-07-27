@@ -1,4 +1,4 @@
-package com.mentormate.devops.greenVsRed.components;
+package com.mentormate.devops.greenVsRed.components.interfaces;
 
 public interface CellInput{
 	

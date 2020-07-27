@@ -1,17 +1,25 @@
 package com.mentormate.devops.greenVsRed.components;
 
+import com.mentormate.devops.greenVsRed.components.interfaces.CellInput;
+import com.mentormate.devops.greenVsRed.components.interfaces.GenerationRules;
 
 public class IteratorCellInput implements CellInput{
-
-	public IteratorCellInput(GameGridIterator iterator) {
+	private GameGridIterator iterator;
+	private GenerationRules rules;
+	
+	public IteratorCellInput(GameGridIterator iterator, GenerationRules rules) {
+		this.iterator = iterator;
 		
 	}
 			
 	@Override
 	public boolean getCell() {
-		// TODO Auto-generated method stub
+		
+		
 		return false;
 	}
+	
+	
 	
 
 
