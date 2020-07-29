@@ -1,5 +1,6 @@
-package com.mentormate.devops.greenVsRed.components;
+package com.mentormate.devops.greenVsRed.components.cellSources;
 
+import com.mentormate.devops.greenVsRed.components.GameGridIterator;
 import com.mentormate.devops.greenVsRed.components.interfaces.GenerationRules;
 
 public class DefaultGenerationRules implements GenerationRules{

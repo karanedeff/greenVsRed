@@ -1,9 +1,13 @@
 package com.mentormate.devops.greenVsRed;
 
+import java.util.Scanner;
+
 import com.mentormate.devops.greenVsRed.components.ConsoleLineInput;
 import com.mentormate.devops.greenVsRed.components.GameGrid;
-import com.mentormate.devops.greenVsRed.components.LineReadingCellInput;
-import com.mentormate.devops.greenVsRed.components.interfaces.CellInput;
+import com.mentormate.devops.greenVsRed.components.GameGridIterator;
+import com.mentormate.devops.greenVsRed.components.cellSources.DefaultGenerationRules;
+import com.mentormate.devops.greenVsRed.components.cellSources.IteratorCellInput;
+import com.mentormate.devops.greenVsRed.components.cellSources.LineReadingCellInput;
 
 /**
  * Hello world!
@@ -13,13 +17,35 @@ public class App
 {
     public static void main( String[] args )
     {
-    	CellInput fromConsole = new LineReadingCellInput(new ConsoleLineInput());
-    	int x,y;
-    	x = 0;
-    	y = 0;
-    	GameGrid currentGen = new GameGrid(x,y, fromConsole);
+    	int x;
+    	int y;
+    	Scanner consoleInput = new Scanner(System.in);
     	
-        System.out.println( "Hello World!" );
+    	String line = consoleInput.nextLine();
+    	x = Integer.parseInt(line.split(", ")[0]);
+    	y = Integer.parseInt(line.split(", ")[1]);
+    	LineReadingCellInput cellsFromConsole = new LineReadingCellInput(new ConsoleLineInput(consoleInput));
+    	GameGrid currentGen = new GameGrid(x,y, cellsFromConsole);
+    	
+    	line = consoleInput.nextLine();    	
+    	int trackX = Integer.parseInt(line.split(", ")[0]);
+    	int trackY = Integer.parseInt(line.split(", ")[1]);
+    	int generations = Integer.parseInt(line.split(", ")[2]);
+    	int trackTimesGreen = 0;
+    	
+    	for (int i = 0; i < generations; i++) {
+    		if (currentGen.get(trackX, trackY)) {
+    			trackTimesGreen++;
+    		}
+			GameGrid nextGen = new GameGrid(x, y, new IteratorCellInput(
+							(GameGridIterator) currentGen.iterator(), 
+							new DefaultGenerationRules()
+							)
+					);	
+			currentGen = nextGen;
+		}
+    	System.out.println(trackTimesGreen);
+    
     }
 
 }

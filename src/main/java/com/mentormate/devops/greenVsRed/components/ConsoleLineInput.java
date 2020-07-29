@@ -6,8 +6,11 @@ import com.mentormate.devops.greenVsRed.components.interfaces.LineSource;
 
 public class ConsoleLineInput implements LineSource{
 	
-	Scanner input = new Scanner(System.in);
+	Scanner input;
 	String currentLine = null;
+	public ConsoleLineInput(Scanner input) {
+		this.input = input;
+	}
 	@Override
 	public String nextLine() {
 		currentLine = null;
