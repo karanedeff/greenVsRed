@@ -1,4 +1,4 @@
-package com.mentormate.devops.greenVsRed.components.cellSources;
+package com.mentormate.devops.greenVsRed.components.sources;
 
 import com.mentormate.devops.greenVsRed.components.GameGridIterator;
 import com.mentormate.devops.greenVsRed.components.interfaces.GenerationRules;
@@ -8,9 +8,8 @@ public class DefaultGenerationRules implements GenerationRules{
 	public boolean isAlive(GameGridIterator iterator) {
 			int neighbors = countNeighbors(iterator);
 			boolean isAlive;
-			if (!iterator.getCurrentCell() && (neighbors == 3 || neighbors == 6)) {
-				isAlive = true;
-			}else isAlive = iterator.getCurrentCell() && (neighbors == 2 || neighbors == 3 || neighbors == 6);
+			if (!iterator.getCurrentCell() && (neighbors == 3 || neighbors == 6)) isAlive = true;
+			else isAlive = iterator.getCurrentCell() && (neighbors == 2 || neighbors == 3 || neighbors == 6);
 			return isAlive;
 		
 	}

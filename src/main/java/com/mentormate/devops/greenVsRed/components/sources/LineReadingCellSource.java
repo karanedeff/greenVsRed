@@ -1,20 +1,32 @@
-package com.mentormate.devops.greenVsRed.components.cellSources;
+package com.mentormate.devops.greenVsRed.components.sources;
 
-import com.mentormate.devops.greenVsRed.components.interfaces.CellInput;
+import com.mentormate.devops.greenVsRed.components.interfaces.CellSource;
 import com.mentormate.devops.greenVsRed.components.interfaces.LineSource;
 
-public class LineReadingCellInput implements CellInput{
+/**
+ * Provides cell data from a CellSource
+ */
+public class LineReadingCellSource implements CellSource {
 	
 	LineSource input;
 	String currentLine;
 	int currentLinePos;
-	
-	public LineReadingCellInput(LineSource input) {
+
+	/**
+	 * Instantiates the class, binding to a LineSource
+	 *
+	 * @param input LineSource.
+	 */
+	public LineReadingCellSource(LineSource input) {
 
 		this.input = input;
 		prepareNextLine();
 	}
-	
+
+	/**
+	 * Extracts
+	 * @return
+	 */
 	@Override
 	public boolean getCell() {
 		checkLineEnd();

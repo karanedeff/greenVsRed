@@ -2,15 +2,16 @@ package com.mentormate.devops.greenVsRed;
 
 import java.util.Scanner;
 
-import com.mentormate.devops.greenVsRed.components.ConsoleLineInput;
+import com.mentormate.devops.greenVsRed.components.sources.ConsoleLineSource;
 import com.mentormate.devops.greenVsRed.components.GameGrid;
 import com.mentormate.devops.greenVsRed.components.GameGridIterator;
-import com.mentormate.devops.greenVsRed.components.cellSources.DefaultGenerationRules;
-import com.mentormate.devops.greenVsRed.components.cellSources.IteratorCellInput;
-import com.mentormate.devops.greenVsRed.components.cellSources.LineReadingCellInput;
+import com.mentormate.devops.greenVsRed.components.sources.DefaultGenerationRules;
+import com.mentormate.devops.greenVsRed.components.sources.IteratorCellSource;
+import com.mentormate.devops.greenVsRed.components.sources.LineReadingCellSource;
 
 /**
- * Hello world!
+ * Main entry point for the green vs red game.
+ * Puts all the other classes together and contains the logic for tracking the targeted cell
  *
  */
 public class App 
@@ -25,7 +26,7 @@ public class App
     	x = Integer.parseInt(line.split(", ")[0]);
     	y = Integer.parseInt(line.split(", ")[1]);
 
-    	LineReadingCellInput cellsFromConsole = new LineReadingCellInput(new ConsoleLineInput(consoleInput));
+    	LineReadingCellSource cellsFromConsole = new LineReadingCellSource(new ConsoleLineSource(consoleInput));
     	GameGrid currentGen = new GameGrid(x,y, cellsFromConsole);
     	
     	line = consoleInput.nextLine();    	
@@ -38,7 +39,7 @@ public class App
     		if (currentGen.get(trackX, trackY)) {
 				trackTimesGreen++;
 			}
-			currentGen = new GameGrid(x, y, new IteratorCellInput(
+			currentGen = new GameGrid(x, y, new IteratorCellSource(
 						(GameGridIterator) currentGen.iterator(),
 						new DefaultGenerationRules()
 						)
