@@ -24,6 +24,7 @@ public class App
     	String line = consoleInput.nextLine();
     	x = Integer.parseInt(line.split(", ")[0]);
     	y = Integer.parseInt(line.split(", ")[1]);
+
     	LineReadingCellInput cellsFromConsole = new LineReadingCellInput(new ConsoleLineInput(consoleInput));
     	GameGrid currentGen = new GameGrid(x,y, cellsFromConsole);
     	
@@ -35,14 +36,16 @@ public class App
     	
     	for (int i = 0; i < generations; i++) {
     		if (currentGen.get(trackX, trackY)) {
-    			trackTimesGreen++;
-    		}
-			GameGrid nextGen = new GameGrid(x, y, new IteratorCellInput(
-							(GameGridIterator) currentGen.iterator(), 
-							new DefaultGenerationRules()
-							)
-					);	
-			currentGen = nextGen;
+				trackTimesGreen++;
+			}
+			currentGen = new GameGrid(x, y, new IteratorCellInput(
+						(GameGridIterator) currentGen.iterator(),
+						new DefaultGenerationRules()
+						)
+					);
+		}
+		if (currentGen.get(trackX, trackY)) {
+			trackTimesGreen++;
 		}
     	System.out.println(trackTimesGreen);
     

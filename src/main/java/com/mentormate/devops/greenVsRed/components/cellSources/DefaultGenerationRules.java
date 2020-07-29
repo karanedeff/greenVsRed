@@ -6,28 +6,25 @@ import com.mentormate.devops.greenVsRed.components.interfaces.GenerationRules;
 public class DefaultGenerationRules implements GenerationRules{
 	@Override
 	public boolean isAlive(GameGridIterator iterator) {
-		// TODO Auto-generated method stub
-			int neighboors = countNeighboors(iterator);
-			if (!iterator.getCurrentCell() && (neighboors == 3 || neighboors == 6)) {
-				return true;
-			}else if (iterator.getCurrentCell() && (neighboors == 2 || neighboors == 3 || neighboors == 6)) {
-				return true;
-			}else {
-				return false;
-			}
+			int neighbors = countNeighbors(iterator);
+			boolean isAlive;
+			if (!iterator.getCurrentCell() && (neighbors == 3 || neighbors == 6)) {
+				isAlive = true;
+			}else isAlive = iterator.getCurrentCell() && (neighbors == 2 || neighbors == 3 || neighbors == 6);
+			return isAlive;
 		
 	}
 	
-	private int countNeighboors(GameGridIterator iterator){
-		int neigboors = 0;
-		if (iterator.getUpperLeft()) neigboors++;
-		if (iterator.getUpper()) neigboors++;
-		if (iterator.getUpperRight()) neigboors++;
-		if (iterator.getLeft()) neigboors++;
-		if (iterator.getRight()) neigboors++;
-		if (iterator.getLowerLeft()) neigboors++;
-		if (iterator.getLower()) neigboors++;
-		if (iterator.getLowerRight()) neigboors++;
-		return neigboors;
+	private int countNeighbors(GameGridIterator iterator){
+		int neighbors = 0;
+		if (iterator.getUpperLeft()) neighbors++;
+		if (iterator.getUpper()) neighbors++;
+		if (iterator.getUpperRight()) neighbors++;
+		if (iterator.getLeft()) neighbors++;
+		if (iterator.getRight()) neighbors++;
+		if (iterator.getLowerLeft()) neighbors++;
+		if (iterator.getLower()) neighbors++;
+		if (iterator.getLowerRight()) neighbors++;
+		return neighbors;
 	}
 }

@@ -1,6 +1,7 @@
 package com.mentormate.devops.greenVsRed.components;
 
 import java.util.Iterator;
+import java.lang.Boolean;
 
 public class GameGridIterator implements Iterator<Boolean> {
 	private GameGrid grid;
@@ -11,19 +12,14 @@ public class GameGridIterator implements Iterator<Boolean> {
 		this.grid = grid;
 		this.currentX = 0;
 		this.currentY = 0;
-		// TODO Auto-generated constructor stub
 		
 	}
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		if (currentX < grid.getMaxX() || currentY < grid.getMaxY()) {
-			return true;
-		}
-		return false;
+		return currentX < grid.getMaxX() || currentY < grid.getMaxY();
 	}
 	
-	public Boolean getCurrentCell() {
+	public boolean getCurrentCell() {
 		return grid.get(currentX, currentY);
 		
 	}
@@ -54,28 +50,28 @@ public class GameGridIterator implements Iterator<Boolean> {
 		}	
 		return nextCell;
 	}
-	public Boolean getUpperLeft() {
+	public boolean getUpperLeft() {
 		return grid.get(currentX - 1, currentY - 1);
 	}
-	public Boolean getUpper() {
+	public boolean getUpper() {
 		return grid.get(currentX - 1, currentY);
 	}
-	public Boolean getUpperRight() {
+	public boolean getUpperRight() {
 		return grid.get(currentX - 1, currentY + 1);
 	}
-	public Boolean getLeft() {
+	public boolean getLeft() {
 		return grid.get(currentX, currentY - 1);
 	}
-	public Boolean getRight() {
+	public boolean getRight() {
 		return grid.get(currentX, currentY + 1);
 	}
-	public Boolean getLowerLeft() {
+	public boolean getLowerLeft() {
 		return grid.get(currentX + 1, currentY - 1);
 	}
-	public Boolean getLower() {
+	public boolean getLower() {
 		return grid.get(currentX + 1, currentY);
 	}
-	public Boolean getLowerRight() {
+	public boolean getLowerRight() {
 		return grid.get(currentX + 1, currentY + 1);
 	}
 

@@ -17,19 +17,22 @@ public class LineReadingCellInput implements CellInput{
 	
 	@Override
 	public boolean getCell() {
+		checkLineEnd();
 		boolean cell;
-		if (currentLinePos >= currentLine.length()) {
-			prepareNextLine();
-		}
-		cell = Boolean.parseBoolean(
-				String.valueOf(
-						currentLine.charAt(currentLinePos)));
+		char currentChar = currentLine.charAt(currentLinePos);
+		cell = currentChar == '1';
 		currentLinePos++;
 		return cell;
 	}
-	
+
+	private void checkLineEnd() {
+		if (currentLinePos >= currentLine.length()) {
+			prepareNextLine();
+		}
+	}
+
 	private void prepareNextLine() {
-		currentLine = input.nextLine();
+		this.currentLine = input.nextLine();
 		this.currentLinePos = 0;
 	}
 
