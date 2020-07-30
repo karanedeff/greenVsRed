@@ -24,8 +24,9 @@ public class LineReadingCellSource implements CellSource {
 	}
 
 	/**
-	 * Extracts
-	 * @return
+	 * Extracts a cell from a String.
+	 * Advances along the string, loads the next line, when it reaches the end
+	 * @return boolean state of a cell
 	 */
 	@Override
 	public boolean getCell() {

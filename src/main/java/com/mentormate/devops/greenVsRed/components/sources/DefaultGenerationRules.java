@@ -3,7 +3,16 @@ package com.mentormate.devops.greenVsRed.components.sources;
 import com.mentormate.devops.greenVsRed.components.GameGridIterator;
 import com.mentormate.devops.greenVsRed.components.interfaces.GenerationRules;
 
+/**
+ * Provides a method for calculating the next generation of a cell.
+ */
 public class DefaultGenerationRules implements GenerationRules{
+	/**
+	 * Calculates the next generation of a cell
+	 *
+	 * @param iterator pointing to the cell to be calculated
+	 * @return the next generation
+	 */
 	@Override
 	public boolean isAlive(GameGridIterator iterator) {
 			int neighbors = countNeighbors(iterator);
